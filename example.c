@@ -7,7 +7,7 @@
 
 #include <stdio.h>
 
-#include <SDL.h>
+#include <SDL2/SDL.h>
 
 #include "gifdec.h"
 
@@ -37,7 +37,7 @@ main(int argc, char *argv[])
         fprintf(stderr, "Could not open %s\n", argv[1]);
         return 1;
     }
-    frame = malloc(gif->width * gif->height * 3);
+    frame = (uint8_t *)malloc(gif->width * gif->height * 3);
     if (!frame) {
         fprintf(stderr, "Could not allocate frame\n");
         return 1;
@@ -95,7 +95,7 @@ main(int argc, char *argv[])
                     pixel = SDL_MapRGB(surface->format, 0x7F, 0x7F, 0x7F);
                 else
                     pixel = SDL_MapRGB(surface->format, 0x00, 0x00, 0x00);
-                addr = surface->pixels + (i * surface->pitch + j * sizeof(pixel));
+                addr = (void *)((size_t)surface->pixels + (i * surface->pitch + j * sizeof(pixel)));
                 memcpy(addr, &pixel, sizeof(pixel));
                 color += 3;
             }

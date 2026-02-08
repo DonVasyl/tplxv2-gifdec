@@ -1,0 +1,27 @@
+project('tplxv2-gifdec', ['c', 'cpp'],
+	version : '0.0.2',
+	default_options : [
+	'c_std=c11',
+	'cpp_std=c++17']
+	)
+
+project_description = 'gifdec with minor fixes, build with meson, for C++ & coreboot payload usage'
+
+add_project_arguments(
+	['-xc++'], language: 'c'
+)
+
+cpp = meson.get_compiler('cpp')
+
+gifdec_src = ['gifdec.c']
+gifdec_example_src = ['example.c']
+gifdec_h = ['gifdec.h']
+
+gifdec_lib = static_library('libgifdecpp',
+	gifdec_src,
+	link_language : 'cpp')
+
+executable('gifplay', gifdec_example_src,
+	link_with: gifdec_lib,
+	dependencies: [dependency('sdl2')],
+	link_language: 'cpp')

@@ -1,7 +1,6 @@
 project('tplxv2-gifdec', ['c', 'cpp'],
 	version : '0.0.2',
 	default_options : [
-	'c_std=c11',
 	'cpp_std=c++17']
 	)
 
@@ -17,11 +16,18 @@ gifdec_src = ['gifdec.c']
 gifdec_example_src = ['example.c']
 gifdec_h = ['gifdec.h']
 
-gifdec_lib = static_library('libgifdecpp',
+gifdec_lib = static_library('gifdecpp',
 	gifdec_src,
-	link_language : 'cpp')
+	link_language : 'cpp',
+	install : true,
+	install_dir : meson.current_source_dir()
+	)
 
-executable('gifplay', gifdec_example_src,
+gifplay_exec = executable('gifplay',
+	gifdec_example_src,
 	link_with: gifdec_lib,
 	dependencies: [dependency('sdl2')],
-	link_language: 'cpp')
+	link_language: 'cpp',
+	install : true,
+	install_dir : meson.current_source_dir()
+	)

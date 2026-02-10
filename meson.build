@@ -19,6 +19,7 @@ gifdec_h = ['gifdec.h']
 gifdec_lib = static_library('gifdecpp',
 	gifdec_src,
 	link_language : 'cpp',
+	include_directories: '.',
 	install : true,
 	install_dir : meson.current_source_dir()
 	)

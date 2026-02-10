@@ -241,7 +241,6 @@ behavior. Other Application Extensions may be supported via this hook.
 The application  data is stored  as a  variable-sized block and  must be
 read from the file by the callback function.
 
-
 Example
 -------
 
@@ -252,6 +251,31 @@ can be tested like this:
     $ ./gifplay animation.gif
 
 That should display the animation. Press SPACE to pause and Q to quit.
+
+Meson project builds
+-------
+> [!NOTE]
+> The following information applies only to the `tplxv2` branch and it's descendats.
+
+To setup project and create the build directory:
+```
+meson setup builddir
+```
+
+To compile the library files & the `gifplay` example:
+```
+meson compile -C builddir
+```
+
+To clean up the artifacts:
+```
+meson compile --clean -C builddir
+```
+
+To install the `gifplay` and the library files in tplxv2-gifdec directory:
+```
+meson install -C builddir
+```
 
 Copying
 -------

@@ -16,6 +16,7 @@ gifdec_src = ['gifdec.c']
 gifdec_example_src = ['example.c']
 gifdec_h = ['gifdec.h']
 
+gifdec_incdir = include_directories('.')
 gifdec_lib = static_library('gifdecpp',
 	gifdec_src,
 	link_language : 'cpp',
@@ -32,3 +33,7 @@ gifplay_exec = executable('gifplay',
 	install : true,
 	install_dir : meson.current_source_dir()
 	)
+
+gifdec_dep = declare_dependency(
+	   include_directories : gifdec_incdir,
+	   link_with : gifdec_lib)

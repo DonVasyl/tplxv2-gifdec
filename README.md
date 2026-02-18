@@ -1,5 +1,5 @@
 # tplxv2-gifdec
-###### a meson- & C++17-compatible fork of
+###### a Meson- & C++17-compatible fork of
 ## "a small C library that can be used to read GIF files"
 ---
 > [!IMPORTANT]
